@@ -1,0 +1,66 @@
+/******************************************************************************
+
+                            Online Java Compiler.
+                Code, Compile, Run and Debug java program online.
+Write your code in this editor and press "Run" button to execute it.
+
+*******************************************************************************/
+
+public class Main
+{
+	public static void main(String[] args) {
+	Person p1=new Person();
+	Person p2=new Person();
+	Person p3=new Person(25);
+	Person p24=new Person(25,"Rahul");
+	    System.out.println(p1.getName());
+	    System.out.println(p1.getAge());
+	   // p2.name="A";
+	   // p2.age=10;
+	   p2.setName("A");
+	   p2.setAge(10);
+	    System.out.println(p2.getName());
+	    System.out.println(p2.getAge());
+	    System.out.println(p3.getAge());
+	    System.out.println(p2.getName());
+	}
+}
+
+
+class Person{
+   private String name;
+    private int age;
+    
+    
+    public Person(){
+        System.out.println("default constructor");
+    }
+    
+    public Person(int age){
+        System.out.println("parameterised constructor with 1 parameter");
+        this.age=age;
+        
+    }
+    
+    
+    public Person(int age,String name){
+        System.out.println("parameterised constructor with 2 parameters");
+        this.age=age;
+        this.name=name;
+    }
+    
+    public String getName(){
+        return name;
+    }
+    public void setName(String name){
+        this.name=name;
+    }
+    public int getAge(){
+        return age;
+    }
+    public void setAge(int age){
+        this.age=age;
+    }
+    
+    
+}
