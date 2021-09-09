@@ -33,7 +33,7 @@ list.reverseData();
 list.display();
 list.reversePointers();
 list.display();
-
+System.out.println(list.mid());
 	}
 }
 
@@ -259,5 +259,16 @@ class linkedlist{
         this.tail=t;
         this.tail.next=null;
     }
+    public int mid(){
+        Node slow = this.head;
+        Node fast = this.head;
+        while(fast.next!=null&&fast.next.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow.data;
+    }
+    
+    
 }
 
