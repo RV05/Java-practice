@@ -1,0 +1,38 @@
+
+
+public class Main
+{
+	public static void main(String[] args) {
+		LL_AS_queue queue = new LL_AS_queue();
+		queue.enqueue(10);
+		queue.display();
+		
+	}
+}
+
+public class LL_AS_queue{
+    private LinkedList queue;
+    public LL_AS_queue(){
+    this.queue=new LinkedList();
+    }
+    public int size(){
+    return this.queue.size();    
+    }
+    public boolean isEmpty(){
+     return this.queue.isEmpty();   
+    }
+    public void enqueue(int data){
+        this.queue.addLast(data);
+    }
+    public int dequeue() throws Exception{
+        this.queue.removeFirst();
+    }
+    public int front() throws Exception{
+        this.queue.getFirst();
+    }
+    public int display() throws Exception{
+        this.queue.display();
+    }
+}
+
+
