@@ -1,0 +1,67 @@
+
+
+public class Main
+{
+	public static void main(String[] args) throws Exception{
+	
+	
+	SUQPopEffecient queue =new SUQPopEffecient();{
+	    for(int i=1;i<=5;i++){
+	        queue.enqueue(i*10);
+	    }
+	    //10 20 30 40 50
+	    queue.display();
+	    System.out.println(queue.dequeue());//10
+	    queue.display();//20 30 40 50
+	    System.out.println(queue.front());
+	}
+	}
+}
+
+
+
+
+ 
+ 
+ class SUQPopEffecient{
+    private DynamicQueue primary;
+    private DynamicQueue secondary;
+    
+    public SUQPopEffecient() throws Exception{
+        this.primary=new DynamicQueue();
+        this.secondary=new DynamicQueue();
+    }
+    public int size(){
+         return this.primary.size();
+    }
+    public boolean isEmpty(){
+    return this.primary.isEmpty();
+        
+    }
+    
+    public void push(int data) throws Exception{
+        while(this.primary.size()!=0){
+            this.secondary.enqueue(this.primary.dequeue());
+        }
+       this.primary.enqueue(data);
+        while(this.secondary.size()!=0){
+            this.primary.enqueue(secondary.dequeue());
+        }
+    }
+    
+    public int top() throws Exception{
+     return this.primary.front();
+    }
+    
+   
+    
+    public void display() throws Exception{
+        
+        this.primary.display();
+        
+    }
+    
+    
+    
+    
+}
