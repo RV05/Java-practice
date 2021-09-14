@@ -7,13 +7,13 @@ public class Main
 	
 	SUQPopEffecient queue =new SUQPopEffecient();{
 	    for(int i=1;i<=5;i++){
-	        queue.enqueue(i*10);
+	        stack.push(i*10);
 	    }
 	    //10 20 30 40 50
-	    queue.display();
-	    System.out.println(queue.dequeue());//10
-	    queue.display();//20 30 40 50
-	    System.out.println(queue.front());
+	    stack.display();
+	    System.out.println(stack.pop());//10
+	    stack.display();//20 30 40 50
+	    System.out.println(stack.top());
 	}
 	}
 }
