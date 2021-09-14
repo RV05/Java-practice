@@ -1,0 +1,169 @@
+
+
+public class Main
+{
+	public static void main(String[] args) throws Exception{
+	
+	
+	QUSEnqueueEffecient queue =new QUSEnqueueEffecient();{
+	    for(int i=1;i<5;i++){
+	        queue.enqueue(i*10);
+	    }
+	    //10 20 30 40 50
+	    queue.display();
+	    System.out.println(queue.dequeue());//10
+	    queue.display();//20 30 40 50
+	}
+	}
+}
+class StackUsingArrays{
+    protected int[] data;
+    protected int top;
+    
+    public static final int DEFAULT_CAPACITY=100;
+    public StackUsingArrays() throws Exception{
+        this(DEFAULT_CAPACITY);
+    }
+    
+    public StackUsingArrays(int capacity) throws Exception{
+        if(capacity<1){
+            throw new Exception("Invalid Capacity");
+        }
+        
+        this.data=new int[capacity];
+        this.top=-1;
+    }
+    public int size(){
+        return this.top+1;
+    }
+    public boolean isEmpty(){
+        return this.size()==0;
+    }
+    public void push(int value) throws Exception{
+        if(this.size()==this.data.length){
+            throw new Exception("Stack is full");
+        }
+        this.top++;
+        this.data[this.top]=value;
+    }
+    public int pop() throws Exception{
+    
+        if(this.size()==0){
+            throw new Exception("Stack is empty");
+        }
+        int rv=this.data[this.top];
+        this.data[this.top]=0;
+        this.top--;
+        return rv;
+    }
+     public int top() throws Exception{
+    
+        if(this.size()==0){
+            throw new Exception("Stack is empty");
+        }
+        int rv=this.data[this.top];
+        
+        return rv;
+    }
+    public void display(){
+        for(int i=this.top;i>=0;i--){
+            System.out.println(this.data[i]+", ");
+        }
+        System.out.println("END");
+    }
+    
+    
+    
+}
+
+class DynamicStack extends StackUsingArrays{
+    
+public DynamicStack() throws Exception{
+    this(DEFAULT_CAPACITY);
+}
+public DynamicStack(int capacity) throws Exception{
+    
+super(capacity);
+    
+}
+public void push(int item) throws Exception{
+    if(this.size()==this.data.length){
+        int[] arr =new int[2*this.data.length];
+        for(int i=0;i<this.size();i++){
+            arr[i]=this.data[i];
+        }
+        this.data=arr;
+    }
+    super.push(item);
+}
+}
+
+
+
+
+ 
+ 
+ class QUSEnqueueEffecient{
+    private DynamicStack primary;
+    private DynamicStack secondary;
+    public QUSEnqueueEffecient() throws Exception{
+        this.primary=new DynamicStack();
+        this.secondary=new DynamicStack();
+    }
+    public int size(){
+         return this.primary.size();
+    }
+    public boolean isEmpty(){
+    return this.primary.isEmpty();
+        
+    }
+    
+    public void enqueue(int data) throws Exception{
+      this.primary.push(data);    
+    }
+    
+    public int dequeue() throws Exception{
+      while(primary.size()!=1){
+          secondary.push(primary.pop());
+      }  
+      int rv=primary.pop();
+      while(!secondary.isEmpty()){
+          primary.push(secondary.pop());
+      }
+      return rv;
+    }
+    
+    public int front() throws Exception{
+    while(primary.size()!=1){
+          secondary.push(primary.pop());
+      }  
+      int rv=primary.top();
+      while(!secondary.isEmpty()){
+          primary.push(secondary.pop());
+      }
+      return rv;    
+    }
+    
+    public void display() throws Exception{
+        reverseStack(primary,secondary,0);
+        primary.display();
+        reverseStack(primary,secondary,0);
+    }
+    
+    
+    public static void reverseStack(DynamicStack stack, DynamicStack helper,int index) throws Exception{
+	    if(stack.isEmpty()){
+	        return;
+	    }
+	    int item=stack.pop();
+	
+	    reverseStack(stack,helper,index+1);
+	    helper.push(item);
+	    if(index==0){
+	        while(!helper.isEmpty()){
+	            stack.push(helper.pop());
+	        }
+	    }
+	}
+    
+}
