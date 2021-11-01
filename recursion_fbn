@@ -1,0 +1,26 @@
+/******************************************************************************
+
+                            Online Java Compiler.
+                Code, Compile, Run and Debug java program online.
+Write your code in this editor and press "Run" button to execute it.
+
+*******************************************************************************/
+
+public class Main
+{
+	public static void main(String[] args) {
+		System.out.println(fbn(6));
+	}
+	
+	public static int fbn(int n){
+	    
+	    if(n==1||n==0)
+	    return n;
+	    
+	    int n1=fbn(n-1);
+	    int n2=fbn(n-2);
+	    int fn=n1+n2;
+	    return fn;
+	}
+	
+}
