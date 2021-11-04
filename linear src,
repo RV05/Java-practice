@@ -1,0 +1,143 @@
+/******************************************************************************
+
+                            Online Java Compiler.
+                Code, Compile, Run and Debug java program online.
+Write your code in this editor and press "Run" button to execute it.
+
+*******************************************************************************/
+import java.util.Arrays;
+import java.util.ArrayList;
+public class Main
+{
+	public static void main(String[] args) {
+// 		System.out.println("Hello World");
+// int[] array={2,3,4,6,7,8,9,9};
+// System.out.println(isarraysorted(array,0));
+// System.out.println(linearsearch(array,0,9));
+// ArrayList<Integer> list=new ArrayList<Integer>();
+// System.out.println(linearsrc(array,0,10,list));
+
+
+//Merge sort in place method
+int[] arr = {5, 4, 3, 2, 1};
+// mergeSortInPlace(arr, 0, arr.length);
+System.out.println(Arrays.toString(arr));
+        
+//quicksort method
+quicksort(arr,0,arr.length-1);
+
+
+
+	}
+	
+	
+	public static boolean isarraysorted(int[] array,int index){
+	    if(index==array.length-1)
+	    return true;
+	    
+	    return array[index+1]>=array[index] && isarraysorted(array,index+1);
+	}
+	
+	public static boolean linearsearch(int[] arr,int index,int target){
+	    if(index==arr.length)
+	    return false;
+	    
+	    return arr[index]==target || linearsearch(arr,index+1,target);
+	}
+	
+	public static ArrayList<Integer> linearsrc(int[] arr,int index,int target,ArrayList<Integer> list){
+if(index==arr.length)
+{if (list.size()==0)
+    list.add(-1);
+    
+    return list;
+
+}
+if(arr[index]==target)
+list.add(index);
+
+linearsrc(arr,index+1,target,list);
+return list;
+	}
+	
+
+public static void mergeSortInPlace(int[] arr, int s, int e) {
+        if (e - s == 1) {
+            return;
+        }
+
+        int mid = (s + e) / 2;
+
+        mergeSortInPlace(arr, s, mid);
+        mergeSortInPlace(arr, mid, e);
+
+        mergeInPlace(arr, s, mid, e);
+    }
+
+  public static void mergeInPlace(int[] arr, int s, int m, int e) {
+        int[] mix = new int[e - s];
+
+        int i = s;
+        int j = m;
+        int k = 0;
+
+        while (i < m && j < e) {
+            if (arr[i] < arr[j]) {
+                mix[k] = arr[i];
+                i++;
+            } else {
+                mix[k] = arr[j];
+                j++;
+            }
+            k++;
+        }
+
+        
+        while (i < m) {
+            mix[k] = arr[i];
+            i++;
+            k++;
+        }
+
+        while (j < e) {  
+            mix[k] = arr[j];
+            j++;
+            k++;
+        }
+
+        for (int l = 0; l < mix.length; l++) {
+            arr[s+l] = mix[l];
+        }
+    }
+	
+	public static void quicksort(int[] nums, int low,int hi){
+	    if(low>=hi)
+	    return;
+	    
+	    int s=low;
+	    int e=hi;
+	    int m = s+(e-s)/2;
+	    int pivot=nums[m];
+	    
+	    while(s<=e){
+	        while(nums[s]<pivot)
+	        s++;
+	        
+	        while(nums[e]>pivot)
+	        e--;
+	        
+	        if(s<=e){
+	            int temp=nums[s];
+	            nums[s]=nums[e];
+	            nums[e]=temp;
+	            s++;
+	            e--;
+	        }
+	        
+	    }
+	    
+	    quicksort(nums,low,e);
+	    quicksort(nums,s,hi);
+	}
+	
+}
