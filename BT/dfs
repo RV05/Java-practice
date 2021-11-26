@@ -1,0 +1,82 @@
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		Solution sol = new Solution();
+		Solution2 sol2 = new Solution2();
+		Solution3 sol3 = new Solution3();
+        // Node node = new Node(3);
+		TreeNode left = new TreeNode(4);
+		TreeNode right = new TreeNode(3);
+	    left.right=new TreeNode(6);
+	    left.left=new TreeNode(7);
+	    right.left=new TreeNode(8);
+	    right.right=new TreeNode(9);
+	    
+	   	TreeNode tree = new TreeNode(2,left,right);
+		
+// 		TreeNode tree = new TreeNode(2);
+		System.out.println(sol.preorderTraversal(tree));
+		System.out.println(sol2.postorderTraversal(tree));
+		System.out.println(sol3.inorderTraversal(tree));
+		
+	}
+}
+
+class TreeNode {
+      int val;
+      TreeNode left;
+      TreeNode right;
+      TreeNode() {}
+      TreeNode(int val) { this.val = val; }
+     TreeNode(int val, TreeNode left, TreeNode right) {
+          this.val = val;
+         this.left = left;
+       this.right = right;
+      }
+  }
+  
+  class Solution {
+    private void dfs(TreeNode node, List<Integer> preorder) {
+        if(node == null) return; 
+        
+        preorder.add(node.val); 
+        dfs(node.left, preorder);
+        dfs(node.right, preorder); 
+    }
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> preorder = new ArrayList<Integer>(); 
+        dfs(root, preorder);
+        return preorder; 
+    }
+}
+
+class Solution2 {
+    private void dfs(TreeNode node, List<Integer> postorder) {
+        if(node == null) return; 
+        
+        dfs(node.left, postorder);
+        dfs(node.right, postorder); 
+        postorder.add(node.val); 
+    }
+    public List<Integer> postorderTraversal(TreeNode root) {
+        List<Integer> postorder = new ArrayList<Integer>(); 
+        dfs(root, postorder);
+        return postorder; 
+    }
+}
+
+class Solution3 {
+    private void dfs(TreeNode node, List<Integer> inorder) {
+        if(node == null) return; 
+        
+        dfs(node.left, inorder);
+        inorder.add(node.val);
+        dfs(node.right, inorder);          
+    }
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> inorder = new ArrayList<Integer>(); 
+        dfs(root, inorder);
+        return inorder; 
+    }
+}
