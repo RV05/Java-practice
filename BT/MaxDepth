@@ -1,0 +1,45 @@
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		Solution sol = new Solution();
+	
+        // Node node = new Node(3);
+		TreeNode left = new TreeNode(4);
+		TreeNode right = new TreeNode(3);
+	    left.right=new TreeNode(6);
+	    left.left=new TreeNode(7);
+	    right.left=new TreeNode(8);
+	    right.right=new TreeNode(9);
+	    
+	   	TreeNode tree = new TreeNode(2,left,right);
+		
+		System.out.println(sol.maxDepth(tree));
+		
+		
+	}
+}
+
+class TreeNode {
+      int val;
+      TreeNode left;
+      TreeNode right;
+      TreeNode() {}
+      TreeNode(int val) { this.val = val; }
+     TreeNode(int val, TreeNode left, TreeNode right) {
+          this.val = val;
+         this.left = left;
+       this.right = right;
+      }
+  }
+  
+  class Solution {
+    public int maxDepth(TreeNode root) {
+        if(root == null) return 0; 
+        
+        int lh = maxDepth(root.left); 
+        int rh = maxDepth(root.right); 
+        
+        return 1 + Math.max(lh, rh); 
+    }
+}
